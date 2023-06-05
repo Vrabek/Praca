@@ -17,6 +17,7 @@ def time_tracker(func):
         end_time = time.time()
         elapsed_time = end_time - start_time
         result["time"] = elapsed_time
+        
         return result
     return wrapper
 

@@ -3,10 +3,8 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-# objective function
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 def random_vector(n_dimensions, search_space):
     return [random.uniform(search_space[i][0], search_space[i][1]) for i in range(n_dimensions)]

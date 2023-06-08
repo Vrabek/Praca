@@ -3,9 +3,7 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
+from Praca.problem_setup import objective_function
 
 def random_vector(minmax):
     return [minmax[i][0] + ((minmax[i][1] - minmax[i][0]) * random.random()) for i in range(len(minmax))]

@@ -2,9 +2,8 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x**2.0 for x in vector)
 
 def random_bitstring(num_bits):
     return ''.join('1' if random.random()<0.5 else '0' for _ in range(num_bits))
@@ -95,7 +94,7 @@ if __name__ == "__main__":
     optimal_solution = 0
     # problem configuration
     problem_size = 3
-    search_space = [[-10, +10] for i in range(problem_size)]
+    search_space = [[-10, +10] for _ in range(problem_size)]
     # algorithm configuration
     max_gens = 100
     pop_size = 100  

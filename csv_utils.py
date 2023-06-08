@@ -2,9 +2,13 @@ import csv
 from collections import defaultdict
 import numpy as np
 from scipy.stats import kurtosis, mode
+from docx import Document
+
 
 data_csv = 'DATA.csv'
 aggregated_data_csv = 'AGGREGATED_DATA.csv'
+stats_csv = 'STATS.csv'
+
 
 def calculate_column_average(csv_file, column_index, constraint_column_index, constraint_value, delimiter=',', has_header=True):
     try:
@@ -84,7 +88,7 @@ def calculate_stats(csv_file='DATA.csv', filter_column='method',calculate_column
     try:
         with open('STATS.csv', 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(['Method', 'Średnia Arytmetyczna', 'Odchylenie Standardowe', 'Wariancja', 'Mediana', 'Kurtoza', 'Moda', 'Min', 'Max'])
+            writer.writerow(['Method', 'Srednia Arytmetyczna', 'Odchylenie Standardowe', 'Wariancja', 'Mediana', 'Kurtoza', 'Moda', 'Min', 'Max'])
 
             for group, values in data.items():
                 np_values = np.array(values)
@@ -103,5 +107,31 @@ def calculate_stats(csv_file='DATA.csv', filter_column='method',calculate_column
         print("Error: Failed to read the CSV file.")
 
 
+def export_to_docx(file_name):
+    with open(file_name, 'r') as f:
+        csv_reader = csv.reader(f)
+        data = list(csv_reader)
+        n_rows = len(data)
+        n_cols = len(data[0])
+
+        # Create a new Document
+        doc = Document()
+
+        # Add a title or any text you want
+        doc.add_heading('Table from CSV file', 0)
+
+        # Add a table to the Document
+        table = doc.add_table(rows=n_rows, cols=n_cols)
+
+        # Loop over the CSV file and add the data to the table
+        for i, row in enumerate(data):
+            cells = table.rows[i].cells
+            for j, item in enumerate(row):
+                cells[j].text = str(item)
+
+        # Save the Document
+        doc.save('file.docx')
+
 if __name__ == "__main__":
-    calculate_stats(data_csv)
+    #calculate_stats(data_csv)
+    export_to_docx(stats_csv)

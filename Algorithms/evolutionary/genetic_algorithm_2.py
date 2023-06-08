@@ -2,9 +2,8 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 def random_float(min_val, max_val):
     return min_val + random.random() * (max_val - min_val)

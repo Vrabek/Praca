@@ -1,8 +1,8 @@
 import random
-import time
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
 def rand_in_bounds(min_val, max_val):
     return min_val + ((max_val - min_val) * random.random())
@@ -33,8 +33,6 @@ def update_position(particle, search_space):
         particle['position'][i] = max(particle['position'][i], search_space[i][0])
         particle['position'][i] = min(particle['position'][i], search_space[i][1])
 
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 @time_tracker
 @memory_tracker
@@ -72,7 +70,7 @@ if __name__ == "__main__":
     optimal_solution = 0
     # problem configuration
     problem_size = 3
-    search_space = [[-10, +10] for i in range(problem_size)]
+    search_space = [[-10, +10] for _ in range(problem_size)]
     # algorithm configuration
     max_iter = 100
     swarm_size = 20

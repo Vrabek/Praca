@@ -2,9 +2,8 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 def random_vector(search_space):
     return [random.uniform(min_val, max_val) for min_val, max_val in search_space]
@@ -71,6 +70,6 @@ if __name__ == '__main__':
         csv_file_name = 'DATA.csv'
         data = [algorithm_name, solution, error ,arguments, total_time, total_memory]
 
-        write_to_csv(csv_file_name, data)
+        #write_to_csv(csv_file_name, data)
 
-    calculate_average(csv_file_name,'method', algorithm_name, [ 'function_value','error','time_duration', 'total_memory'])
+    #calculate_average(csv_file_name,'method', algorithm_name, [ 'function_value','error','time_duration', 'total_memory'])

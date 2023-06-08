@@ -3,9 +3,8 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x_i ** 2.0 for x_i in vector)
 
 def random_vector(search_space):
     return [random.uniform(search_space[i][0], search_space[i][1]) for i in range(len(search_space))]
@@ -36,8 +35,8 @@ def search(search_space, max_iter, max_temp, temp_change):
             current = candidate
         if candidate['cost'] < best['cost']:
             best = candidate
-        if (iteration+1) % 10 == 0:
-            print(f"> iteration {iteration+1}, temp={temp}, best={best['cost']}")
+        
+        print(f"> iteration {iteration+1}, temp={temp}, best={best['cost']}")
 
     return best
 
@@ -47,7 +46,7 @@ if __name__ == "__main__":
     optimal_solution = 0
     # problem configuration
     problem_size =  3
-    search_space = [[-10, +10] for i in range(problem_size)]
+    search_space = [[-10, +10] for _ in range(problem_size)]
     # algorithm configuration
     max_iter = 100
     max_temp = 100000.0

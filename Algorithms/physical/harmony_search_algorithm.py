@@ -2,9 +2,8 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 def rand_in_bounds(min, max):
     return min + ((max-min) * random.random())
@@ -60,7 +59,7 @@ if __name__ == "__main__":
     optimal_solution = 0
     # problem configuration
     problem_size = 3
-    search_space = [[-10, +10] for i in range(problem_size)]
+    search_space = [[-10, +10] for _ in range(problem_size)]
     # algorithm configuration
     mem_size = 20
     consid_rate = 0.95

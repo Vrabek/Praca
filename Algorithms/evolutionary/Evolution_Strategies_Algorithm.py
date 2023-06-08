@@ -4,9 +4,8 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
+from Praca.problem_setup import objective_function
 
-def objective_function(vector):
-    return sum(x ** 2.0 for x in vector)
 
 def random_vector(minmax):
     return [minmax[i][0] + ((minmax[i][1] - minmax[i][0]) * random.random()) for i in range(len(minmax))]
@@ -68,7 +67,7 @@ def search(max_gens, search_space, pop_size, num_children):
 
 if __name__ == "__main__":
 
-    algorithm_name = 'evolution strategies algorithm search'
+    algorithm_name = 'evolution strategies algorithm'
     optimal_solution = 0
     # problem configuration
     problem_size = 3

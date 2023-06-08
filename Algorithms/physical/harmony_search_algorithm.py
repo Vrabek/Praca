@@ -2,7 +2,7 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def rand_in_bounds(min, max):
@@ -56,10 +56,9 @@ def search(bounds, max_iter, mem_size, consid_rate, adjust_rate, range_value):
 if __name__ == "__main__":
     
     algorithm_name = 'harmony search algorithm'
-    optimal_solution = 0
+    
     # problem configuration
-    problem_size = 3
-    search_space = [[-10, +10] for _ in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     mem_size = 20
     consid_rate = 0.95

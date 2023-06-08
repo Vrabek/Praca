@@ -3,7 +3,7 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def decode(bitstring, search_space, bits_per_param):
@@ -87,10 +87,8 @@ def search(search_space, max_gens, pop_size, clone_factor, num_rand, bits_per_pa
 if __name__ == "__main__":
     
     algorithm_name = 'colonal selection algorithm'
-    optimal_solution = 0
     # problem configuration
-    problem_size = 3
-    search_space = [[-10, +10] for _ in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     max_gens = 100
     pop_size = 100

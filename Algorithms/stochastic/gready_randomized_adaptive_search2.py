@@ -2,7 +2,7 @@ import random
 
 from Praca.decorators import memory_tracker, time_tracker
 from Praca.csv_utils import write_to_csv, calculate_average
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def random_vector(search_space):
@@ -42,10 +42,9 @@ def search(search_space, problem_size, max_iter, max_no_improv):
 if __name__ == '__main__':
 
     algorithm_name = 'greedy randomized adaptive search'
-    optimal_solution = 0
+
     # problem configuration
-    problem_size = 3  
-    search_space = [[-10, +10] for _ in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     max_iter = 100
     max_no_improv = 50

@@ -3,7 +3,7 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 def random_vector(minmax):
     return [minmax[i][0] + ((minmax[i][1] - minmax[i][0]) * random.random()) for i in range(len(minmax))]
@@ -81,10 +81,9 @@ def search(search_space, pop_size, elim_disp_steps, repro_steps, chem_steps, swi
 if __name__ == "__main__":
     
     algorithm_name = 'bacterial foarging optimization algorithm'
-    optimal_solution = 0
+    
     # problem configuration
-    problem_size = 3
-    search_space = [[-10, 10] ] * problem_size
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     pop_size = 100
     step_size = 0.1 # Ci

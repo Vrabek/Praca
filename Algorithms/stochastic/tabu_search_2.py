@@ -2,7 +2,7 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def random_vector(search_space):
@@ -45,10 +45,9 @@ def search(search_space, max_iter, max_no_improv, max_tabu_size):
 if __name__ == '__main__':
 
     algorithm_name = 'tabu search'
-    optimal_solution = 0
+    
     # problem configuration
-    problem_size = 3  # number of arguments in the objective function
-    search_space = [(-10, 10)] * problem_size  # predefined search space
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     max_iter = 100
     max_no_improv = 50
@@ -70,6 +69,6 @@ if __name__ == '__main__':
         csv_file_name = 'DATA.csv'
         data = [algorithm_name, solution, error ,arguments, total_time, total_memory]
 
-        #write_to_csv(csv_file_name, data)
+        write_to_csv(csv_file_name, data)
 
-    #calculate_average(csv_file_name,'method', algorithm_name, [ 'function_value','error','time_duration', 'total_memory'])
+    calculate_average(csv_file_name,'method', algorithm_name, [ 'function_value','error','time_duration', 'total_memory'])

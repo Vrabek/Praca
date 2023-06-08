@@ -2,7 +2,7 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 def random_vector(search_space):
     return [random.uniform(search_space[i][0], search_space[i][1]) for i in range(len(search_space))]
@@ -76,10 +76,9 @@ def search(problem_size, search_space, max_iterations, num_ants, decay, c_heur, 
 if __name__ == "__main__":
     
     algorithm_name = 'ant colony system'
-    optimal_solution = 0
+    
     # problem configuration
-    problem_size = 3
-    search_space = [[-10, +10] for _ in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     max_iterations = 100
     num_ants = 10

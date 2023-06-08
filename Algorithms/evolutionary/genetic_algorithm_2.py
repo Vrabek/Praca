@@ -2,7 +2,7 @@ import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def random_float(min_val, max_val):
@@ -77,11 +77,8 @@ def genetic_algorithm(search_space, population_size, num_generations, num_parent
 if __name__ == "__main__":
 
     algorithm_name = 'genetic algorithm'
-    optimal_solution = 0
     # Problem configuration
-
-    problem_size = 3
-    search_space = [[-10, +10] for _ in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
 
     # Algorithm configuration
     population_size = 100

@@ -3,7 +3,7 @@ import math
 
 from Praca.csv_utils import write_to_csv, calculate_average
 from Praca.decorators import memory_tracker, time_tracker
-from Praca.problem_setup import objective_function
+from Praca.problem_setup import objective_function, problem_configuration
 
 
 def random_vector(n_dimensions, search_space):
@@ -67,17 +67,16 @@ if __name__ == "__main__":
     algorithm_name = 'artificial immune recognition system'
     optimal_solution = 0
     # problem configuration
-    problem_size = 3  # Change this to the number of variables in your problem
-    num_patterns = 100
-    search_space = [[-10, +10] for i in range(problem_size)]
+    problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
+    max_iter = 100
     clone_rate = 10
     mutate_rate = 2.0
     max_res = 150
     # execute the algorithm
     for i in range(100):
 
-        best = execute(problem_size, num_patterns, clone_rate, mutate_rate, max_res, search_space)
+        best = execute(problem_size, max_iter, clone_rate, mutate_rate, max_res, search_space)
         solution = best['score']
         error = abs(optimal_solution - solution)
         arguments = best['vector']

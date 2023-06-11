@@ -33,19 +33,16 @@ def draw_boxplot(data):
     ax.yaxis.grid(color='gray', linestyle='dashed')
     ax.xaxis.grid(color='gray', linestyle='dashed')
 
-    plt.title('search_space = [-10,+10], problem_size = 3, max_iter = 100')
-    search_space = [-10,+10]
-    problem_size = 3
-    max_iter = 100
-    ax.text(0.5, 1.03, 'Wykres pudełkowy błędu wszystkich metod', fontsize=15, ha='center', va='bottom', transform=ax.transAxes)
+    plt.title('search_space = [-10,+10], problem_size = 2, max_iter = 100')
+    ax.text(0.5, 1.03, 'Wykres pudełkowy czasu wykonania dla wszystkich metod', fontsize=15, ha='center', va='bottom', transform=ax.transAxes)
     plt.yticks(rotation=45)
-    plt.xlabel('Wartość błędu')
+    plt.xlabel('Czas wykonania [s]')
     plt.show()
 
 def draw_barplot(data):
     fig = plt.figure(figsize=(10, 6))
     ax = fig.add_subplot(111)
-    sorted_data = dict(sorted(data.items(), key=lambda item: item[1], reverse=True))
+    sorted_data = dict(sorted(data.items(), key=lambda item: item[1], reverse=False))
     values_prep = list(sorted_data.values())
     values = [item[0] for item in values_prep]
     labels = list(sorted_data.keys())
@@ -53,15 +50,15 @@ def draw_barplot(data):
     ax.barh(labels, values)
     ax.yaxis.grid(color='gray', linestyle='dashed')
     ax.xaxis.grid(color='gray', linestyle='dashed')
-    plt.title('search_space = [-10,+10], problem_size = 3, max_iter = 100')
-    ax.text(0.5, 1.03, 'Wykres słupkowy średniej wartości błędu wszystkich metod', fontsize=15, ha='center', va='bottom', transform=ax.transAxes)
+    plt.title('search_space = [-10,+10], problem_size = 2, max_iter = 100')
+    ax.text(0.5, 1.03, 'Wykres słupkowy średniego czasu wykoanania dla wszystkich metod', fontsize=15, ha='center', va='bottom', transform=ax.transAxes)
     plt.yticks(rotation=45)
-    plt.xlabel('Średnia wartość błędu')
+    plt.xlabel('Czas wykonania [s]')
     plt.show()
 
 if __name__ == "__main__":
-    agg_data = data_to_dict(agg_file, 'method', 'average_error')
+    agg_data = data_to_dict(agg_file, 'method', 'average_time_duration')
     draw_barplot(agg_data)
 
-    data = data_to_dict(file, 'method', 'error')
+    data = data_to_dict(file, 'method', 'time_duration')
     draw_boxplot(data)

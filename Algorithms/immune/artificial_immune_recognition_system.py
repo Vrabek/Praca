@@ -33,11 +33,11 @@ def create_arb_pool(best_match, clone_rate, mutate_rate, search_space):
 
 def competition_for_resources(pool, clone_rate, max_res):
     for cell in pool:
-        cell['resources'] = clone_rate / cell['score']  # We want to minimize the function, so we divide instead of multiply
-    pool.sort(key=lambda x: x['resources'], reverse=True)  # Highest resources first
+        cell['resources'] = clone_rate / cell['score']
+    pool.sort(key=lambda x: x['resources'], reverse=True)
     total_resources = sum(cell['resources'] for cell in pool)
     while total_resources > max_res:
-        cell = pool.pop()  # Remove the cell with the smallest resources
+        cell = pool.pop()
         total_resources -= cell['resources']
 
 def train_system(mem_cells, num_patterns, clone_rate, mutate_rate, max_res, search_space):
@@ -46,9 +46,9 @@ def train_system(mem_cells, num_patterns, clone_rate, mutate_rate, max_res, sear
         print(f"Iteration {i+1}, Best score: {best_match['score']}, Best vector: {best_match['vector']}")
         pool = create_arb_pool(best_match, clone_rate, mutate_rate, search_space)
         competition_for_resources(pool, clone_rate, max_res)
-        mem_cells.extend(pool)  # Add all cells from the pool to the memory cells
-        mem_cells.sort(key=lambda x: x['score'])  # Sort the cells by their score
-        if len(mem_cells) > max_res:  # If we have too many cells, remove the worst ones
+        mem_cells.extend(pool)
+        mem_cells.sort(key=lambda x: x['score'])
+        if len(mem_cells) > max_res:
             mem_cells = mem_cells[:max_res]
     return mem_cells
 

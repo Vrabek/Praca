@@ -133,5 +133,5 @@ def export_to_docx(file_name):
         doc.save('file.docx')
 
 if __name__ == "__main__":
-    #calculate_stats(data_csv)
-    export_to_docx(stats_csv)
+    calculate_stats(data_csv)
+    #export_to_docx(stats_csv)

@@ -2,6 +2,9 @@ def objective_function(vector):
     #f(x, y) = x^2 * (x - 2)^2 + y^2 * (y - 2)^2
     return sum(x_i ** 2.0 for x_i in vector)
 
+#def objective_function(vector):
+#    x, y = vector
+#    return x**2 * (x - 2)**2 + y**2 * (y - 2)**2
 
 def problem_configuration():
 

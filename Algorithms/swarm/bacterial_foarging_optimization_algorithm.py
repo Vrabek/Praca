@@ -80,7 +80,7 @@ def search(search_space, pop_size, elim_disp_steps, repro_steps, chem_steps, swi
 
 if __name__ == "__main__":
     
-    algorithm_name = 'bacterial foarging optimization algorithm'
+    algorithm_name = 'Algorytm Optymalizacji Poprzez Rozwoj Bakteryjny'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

@@ -41,7 +41,7 @@ def search(search_space, problem_size, max_iter, max_no_improv):
 
 if __name__ == '__main__':
 
-    algorithm_name = 'greedy randomized adaptive search'
+    algorithm_name = 'Zachlanny Algorytm Losowego Adaptacyjnego Przeszukiwania'
 
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

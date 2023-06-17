@@ -75,7 +75,7 @@ def search(problem_size, search_space, max_iterations, num_ants, decay, c_heur, 
 
 if __name__ == "__main__":
     
-    algorithm_name = 'ant colony system'
+    algorithm_name = 'System Mrowkowy'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

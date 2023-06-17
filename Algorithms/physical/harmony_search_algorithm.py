@@ -55,7 +55,7 @@ def search(bounds, max_iter, mem_size, consid_rate, adjust_rate, range_value):
 
 if __name__ == "__main__":
     
-    algorithm_name = 'harmony search algorithm'
+    algorithm_name = 'Algorytm Harmonijnego Przeszukiwania'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

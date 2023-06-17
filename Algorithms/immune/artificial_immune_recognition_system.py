@@ -64,7 +64,7 @@ def execute(n_dimensions, num_patterns, clone_rate, mutate_rate, max_res, search
 
 if __name__ == "__main__":
     
-    algorithm_name = 'artificial immune recognition system'
+    algorithm_name = 'System Sztucznego Rozpoznawania Ukladu Immunologicznego'
     optimal_solution = 0
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

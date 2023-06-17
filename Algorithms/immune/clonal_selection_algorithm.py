@@ -33,7 +33,10 @@ def point_mutation(bitstring, rate):
     return child
 
 def calculate_mutation_rate(antibody, mutate_factor=-2.5):
-    return math.exp(mutate_factor * antibody['affinity'])
+    affinity = antibody['affinity']
+    
+    exponent = max(min(mutate_factor * affinity, 700), -700)
+    return math.exp(exponent)
 
 def num_clones(pop_size, clone_factor):
     return int(pop_size * clone_factor)
@@ -86,7 +89,7 @@ def search(search_space, max_gens, pop_size, clone_factor, num_rand, bits_per_pa
 
 if __name__ == "__main__":
     
-    algorithm_name = 'colonal selection algorithm'
+    algorithm_name = 'Algorytm Selekcji Klonalnej'
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration

@@ -67,7 +67,7 @@ def search(max_gens, search_space, vel_space, pop_size, max_vel, c1, c2):
 
 if __name__ == "__main__":
     
-    algorithm_name = 'particle swarm optimization algorithm'
+    algorithm_name = 'Algorytm Optymalizacji Rojem Czastek'
 
     # problem configuration problem_size, search_space, optimal_solution
     problem_size, search_space, optimal_solution = problem_configuration()

@@ -25,7 +25,7 @@ def search(search_space, max_iter):
 
 if __name__ == "__main__":
 
-    algorithm_name = 'random search'
+    algorithm_name = 'Losowe Poszukiwanie'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

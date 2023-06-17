@@ -42,7 +42,7 @@ def search(search_space, max_iter, max_temp, temp_change):
 
 if __name__ == "__main__":
     
-    algorithm_name = 'physical annealing algorithm'
+    algorithm_name = 'Algorytm Symulowanego Wyzarzania'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

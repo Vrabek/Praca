@@ -90,7 +90,7 @@ def search(max_gens, search_space, pop_size, p_cross, p_mut, max_local_gens, p_l
 
 if __name__ == "__main__":
         
-    algorithm_name = 'mematic algorithm'
+    algorithm_name = 'Algorytm Memetyczny'
     optimal_solution = 0
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

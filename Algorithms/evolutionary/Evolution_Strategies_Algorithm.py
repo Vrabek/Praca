@@ -67,7 +67,7 @@ def search(max_gens, search_space, pop_size, num_children):
 
 if __name__ == "__main__":
 
-    algorithm_name = 'evolution strategies algorithm'
+    algorithm_name = 'Algorytm Strategii Ewolucyjnych'
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration

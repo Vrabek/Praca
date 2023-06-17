@@ -76,7 +76,7 @@ def genetic_algorithm(search_space, population_size, num_generations, num_parent
 
 if __name__ == "__main__":
 
-    algorithm_name = 'genetic algorithm'
+    algorithm_name = 'Algorytm Genetyczny'
     # Problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
 

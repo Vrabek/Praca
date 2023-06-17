@@ -61,7 +61,7 @@ def search(max_gens, search_space, pop_size, f, cr):
 
 if __name__ == '__main__':
 
-    algorithm_name = 'diffrential evolution algorithm'
+    algorithm_name = 'Algorytm Ewolucji Roznicowej'
 
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

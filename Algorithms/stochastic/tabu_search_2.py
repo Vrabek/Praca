@@ -44,7 +44,7 @@ def search(search_space, max_iter, max_no_improv, max_tabu_size):
 
 if __name__ == '__main__':
 
-    algorithm_name = 'tabu search'
+    algorithm_name = 'Przeszukiwanie z Zakazem'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

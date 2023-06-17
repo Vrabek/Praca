@@ -66,7 +66,7 @@ def optimize(search_space, max_iter, swarm_size, c1, c2):
 
 if __name__ == "__main__":
 
-    algorithm_name = 'dendritic cell algorithm'
+    algorithm_name = 'Algorytm Komorek Dendrytycznych'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

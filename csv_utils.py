@@ -88,7 +88,8 @@ def calculate_stats(csv_file='DATA.csv', filter_column='method',calculate_column
     try:
         with open('STATS.csv', 'w') as file:
             writer = csv.writer(file)
-            writer.writerow(['Method', 'Srednia Arytmetyczna', 'Odchylenie Standardowe', 'Wariancja', 'Mediana', 'Kurtoza', 'Moda', 'Min', 'Max'])
+            writer.writerow(['Method', 'Srednia Arytmetyczna', 'Odchylenie Standardowe'
+                             , 'Wariancja', 'Mediana', 'Kurtoza', 'Moda', 'Min', 'Max'])
 
             for group, values in data.items():
                 np_values = np.array(values)

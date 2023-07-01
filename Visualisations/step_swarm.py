@@ -223,13 +223,14 @@ def ploting(first, second, third):
 
     # Tworzenie wykresu 3D
     fig = plt.figure()
+    fig.suptitle('Algorytmy Rozproszone dla 1000 iteracji', fontsize=16)
     ax = fig.add_subplot(131, projection='3d')
     ax.plot_surface(X1, X2, F, cmap='viridis', alpha=0.5)
     ax.plot(first['x1'], first['x2'], first['f'], linewidth=2, color='blue')
     ax.scatter(0, 0, 0, linewidth=3 ,color='red')
 
     # Dodawanie tytułów i etykiet osi
-    ax.set_title("System Mrowkowy", fontsize=16)
+    ax.set_title("System Kolonii Mrowek", fontsize=16)
     ax.set_xlabel("x1")
     ax.set_ylabel("x2")
     ax.set_zlabel("f")
@@ -242,7 +243,7 @@ def ploting(first, second, third):
     ax1.plot(second['x1'], second['x2'], second['f'], linewidth=2, color='blue')
     ax1.scatter(0, 0, 0, linewidth=3 ,color='red')
      # Dodawanie tytułów i etykiet osi
-    ax1.set_title("Algorytm Optymalizacji Poprzez Rozwoj Bakteryjny", fontsize=16)
+    ax1.set_title("Algorytm Optymalizacji\n Poprzez Rozwoj Bakteryjny", fontsize=16)
     ax1.set_xlabel("x1")
     ax1.set_ylabel("x2")
     ax1.set_zlabel("f")
@@ -254,7 +255,7 @@ def ploting(first, second, third):
     ax2.plot(third['x1'], third['x2'], third['f'], linewidth=2, color='blue')
     ax2.scatter(0, 0, 0, linewidth=3 ,color='red')
      # Dodawanie tytułów i etykiet osi
-    ax2.set_title("Algorytm Optymalizacji Rojem Czastek", fontsize=16)
+    ax2.set_title("Algorytm Optymalizacji\n Rojem Czastek", fontsize=16)
     ax2.set_xlabel("x1")
     ax2.set_ylabel("x2")
     ax2.set_zlabel("f")
@@ -269,12 +270,12 @@ if __name__ == "__main__":
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
-    max_iterations = 100
+    max_iterations = 1000
     # execute the algorithm
     vel_space = [[-1, 1] for _ in range(problem_size)]
 
     data1 = ACS_search(problem_size, search_space, max_iterations)
-    data2 = BFOA_search(search_space, max_iterations)
+    data2 = BFOA_search(search_space, 150)
     data3 = PSO_search(max_iterations, search_space, vel_space)
 
     data1['x1'] = [5] + data1['x1']

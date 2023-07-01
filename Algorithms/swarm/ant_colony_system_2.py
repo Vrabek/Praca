@@ -1,3 +1,4 @@
+#zaimplementowane na podstawie pracy Clever Algorithms Nature-Inspired Programming Recipes
 import random
 
 from Praca.csv_utils import write_to_csv, calculate_average
@@ -75,7 +76,7 @@ def search(problem_size, search_space, max_iterations, num_ants, decay, c_heur, 
 
 if __name__ == "__main__":
     
-    algorithm_name = 'System Mrowkowy'
+    algorithm_name = 'System Kolonii Mrowek'
     
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()

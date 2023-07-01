@@ -1,3 +1,4 @@
+#zaimplementowane na podstawie pracy Clever Algorithms Nature-Inspired Programming Recipes
 import random
 
 from Praca.decorators import memory_tracker, time_tracker

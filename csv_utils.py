@@ -15,7 +15,7 @@ def calculate_column_average(csv_file, column_index, constraint_column_index, co
         with open(csv_file, 'r') as file:
             reader = csv.reader(file, delimiter=delimiter)
             if has_header:
-                next(reader)  # Skip the header row
+                next(reader)
             values = []
             for row in reader:
                 try:
@@ -115,24 +115,19 @@ def export_to_docx(file_name):
         n_rows = len(data)
         n_cols = len(data[0])
 
-        # Create a new Document
         doc = Document()
 
-        # Add a title or any text you want
         doc.add_heading('Table from CSV file', 0)
 
-        # Add a table to the Document
         table = doc.add_table(rows=n_rows, cols=n_cols)
 
-        # Loop over the CSV file and add the data to the table
         for i, row in enumerate(data):
             cells = table.rows[i].cells
             for j, item in enumerate(row):
                 cells[j].text = str(item)
 
-        # Save the Document
         doc.save('file.docx')
 
 if __name__ == "__main__":
-    calculate_stats(data_csv)
-    #export_to_docx(stats_csv)
+    #calculate_stats(data_csv)
+    export_to_docx(stats_csv)

@@ -107,6 +107,7 @@ def ploting(first, second, third):
     # Tworzenie wykresu 3D
     fig = plt.figure()
     ax = fig.add_subplot(131, projection='3d')
+    fig.suptitle('Algorytmy Stochastyczne dla 1000 iteracji', fontsize=16)
     ax.plot_surface(X1, X2, F, cmap='viridis', alpha=0.5)
     ax.plot(first['x1'], first['x2'], first['f'], linewidth=2, color='blue')
     ax.scatter(0, 0, 0, linewidth=3 ,color='red')
@@ -137,7 +138,7 @@ def ploting(first, second, third):
     ax2.plot(third['x1'], third['x2'], third['f'], linewidth=2, color='blue')
     ax2.scatter(0, 0, 0, linewidth=3 ,color='red')
      # Dodawanie tytułów i etykiet osi
-    ax2.set_title("Zachlanny Algorytm Losowego Adaptacyjnego Przeszukiwania", fontsize=16)
+    ax2.set_title("Zachlanny Algorytm Losowego \nAdaptacyjnego Przeszukiwania", fontsize=16)
     ax2.set_xlabel("x1")
     ax2.set_ylabel("x2")
     ax2.set_zlabel("f")
@@ -154,11 +155,11 @@ if __name__ == "__main__":
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
-    max_iter = 100
+    max_iter = 1000
     max_no_improv = 50
     max_tabu_size = 10
     # execute the algorithm
-    data1 = random_search(search_space, max_iter)
+    data1 = random_search([[-7,7],[-7,7]], max_iter)
     data2 = tabu_search(search_space, max_iter, max_no_improv, max_tabu_size)
     data3 = GRASP_search(search_space, problem_size, max_iter, max_no_improv)
 

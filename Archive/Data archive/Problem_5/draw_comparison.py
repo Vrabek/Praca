@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import csv
 from collections import defaultdict
+import numpy as np
 
 def read_csv(filename, group_column, value_column):
     with open(filename, 'r') as file:
@@ -14,38 +15,35 @@ def read_csv(filename, group_column, value_column):
                 data[row[group_index]].append(float(row[value_index]))
     return data
 
-# Nazwy plików i legendy
-filenames = ['AGGREGATED_DATA_PS_2.csv', 'AGGREGATED_DATA_PS_10.csv', 'AGGREGATED_DATA_PS_50.csv']
-legend_labels = ['2 zmienne decyzyjne', '10 zmiennych decyzyjnych', '50 zmiennych decyzyjnych']
+filenames = ['AGGREGATED_DATA_10_iter.csv', 'AGGREGATED_DATA_100_iter.csv', 'AGGREGATED_DATA_1000_iter.csv']
+legend_labels = ['10 iteracji', '100 iteracji', '1000 iteracji']
 
-# Wczytaj dane
-data = [read_csv(filename, 'method', 'average_time_duration') for filename in filenames]
+data = [read_csv(filename, 'method', 'average_error') for filename in filenames]
 
-# Utwórz wykres
 fig, ax = plt.subplots()
 
-# Dodaj dane do wykresu
 width = 0.3
+all_bars = []
 labels = list(data[0].keys())
 for i, (filename, legend_label) in enumerate(zip(filenames, legend_labels)):
+    print([data[i][label] for label in labels])
     means = [sum(data[i][label])/len(data[i][label]) for label in labels]
     bars = ax.bar([j + i*width for j in range(len(labels))], means, width=width, label=legend_label)
+    all_bars.append(bars)
+    
+# Labeling at the center bar
+middle_bars = all_bars[len(filenames) // 2]
+for j, bar in enumerate(middle_bars):
+    ax.text(bar.get_x() + bar.get_width() / 2, 0, labels[j], 
+            ha='center', va='bottom', rotation='vertical')
 
-    # Dodaj etykiety do ostatnich słupków
-    if i == len(filenames) - 1:
-        for j, bar in enumerate(bars):
-            ax.text(bar.get_x() + bar.get_width() / 2, 0, labels[j], 
-                    ha='center', va='bottom', rotation='vertical')
-
-# Ustaw etykiety osi x
 ax.set_xticks([j + width*(len(filenames)-1)/2 for j in range(len(labels))])
 ax.set_xticklabels([''] * len(labels))
 
-# Dodaj legendę
+
 ax.legend()
 
 plt.xlabel('Algorytmy')
-plt.ylabel('Czas wykonania [s]')
-plt.title('Wykres słupkowy średniego czasu wykonania dla wszystkich metod')
-# Pokaż wykres
+plt.ylabel('Wartość Błędu')
+plt.title('Wykres słupkowy średniej wartości błędu  dla wszystkich metod')
 plt.show()

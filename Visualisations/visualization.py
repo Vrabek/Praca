@@ -97,7 +97,7 @@ def draw_barplot(data, vert=False):
         bars = ax.bar(labels, values)
         ax.yaxis.grid(color='gray', linestyle='dashed')
         ax.xaxis.grid(color='gray', linestyle='dashed')
-        plt.title('przestrzeń wyszukiwania = [-10,+10], wymiarowość problemu = 2, limit iteracji = 100')
+        plt.title('przestrzeń wyszukiwania = [-10,+10], wymiarowość problemu = 3, limit iteracji = 100')
         for bar, category in zip(bars, labels):
             plt.text(bar.get_x() + bar.get_width() / 2, 0, category, ha='center', va='bottom', rotation=90)
 
@@ -107,11 +107,39 @@ def draw_barplot(data, vert=False):
         plt.xlabel('Algorytmy')
         plt.show()
 
+def draw_boxplot_hig(data):
+    fig = plt.figure(figsize=(10, 6))
+    ax = fig.add_subplot(111)
+    values = list(data.values())
+    labels = list(data.keys())
+    box_plots = ax.boxplot(values, labels=labels, vert=0, patch_artist=True)
+    ax.yaxis.grid(color='gray', linestyle='dashed')
+    ax.xaxis.grid(color='gray', linestyle='dashed')
+
+    plt.title('przestrzeń wyszukiwania = [-10,+10], wymiarowość problemu = 3, limit iteracji = 100')
+
+    max_x_value = max([item for sublist in values for item in sublist])
+    center_x_value = max_x_value / 3
+
+    for i, label in enumerate(labels, 1):
+        ax.text(center_x_value, i, label, va='center', ha='left', color='black', fontsize=10)
+
+    ax.text(0.5, 1.03, 'Wykres pudełkowy wartości błędu dla wszystkich metod', 
+            fontsize=15, ha='center', va='bottom', transform=ax.transAxes)
+
+    colors = ['pink', 'lightblue', 'lightgreen', 'red', 'purple', 'orange', 'yellow']
+    for i, box in enumerate(box_plots['boxes']):
+        box.set(facecolor=colors[i % len(colors)])
+
+    plt.yticks([])  # Usuń etykiety osi y
+    plt.xlabel('Wartość błędu')
+    plt.ylabel('Algorytmy')
+    plt.show()
 
 
 if __name__ == "__main__":
-    agg_data = data_to_dict(agg_file, 'method', 'average_total_memory')
-    draw_barplot(agg_data, True)
+    agg_data = data_to_dict(agg_file, 'method', 'average_error')
+    draw_barplot(agg_data, False)
 
-    data = data_to_dict(file, 'method', 'average_total_memory')
-    draw_boxplot_mid(data)
+    data = data_to_dict(file, 'method', 'error')
+    draw_boxplot(data)

@@ -215,13 +215,14 @@ def ploting(first, second, third):
 
     # Tworzenie wykresu 3D
     fig = plt.figure()
+    fig.suptitle('Algorytmy Immunologiczne dla 1000 iteracji', fontsize=16)
     ax = fig.add_subplot(131, projection='3d')
     ax.plot_surface(X1, X2, F, cmap='viridis', alpha=0.5)
     ax.plot(first['x1'], first['x2'], first['f'], linewidth=2, color='blue')
     ax.scatter(0, 0, 0, linewidth=3 ,color='red')
 
     # Dodawanie tytułów i etykiet osi
-    ax.set_title("System Sztucznego Rozpoznawania Ukladu Immunologicznego", fontsize=16)
+    ax.set_title("System Sztucznego Rozpoznawania\n Ukladu Immunologicznego", fontsize=16)
     ax.set_xlabel("x1")
     ax.set_ylabel("x2")
     ax.set_zlabel("f")
@@ -259,14 +260,14 @@ def ploting(first, second, third):
 if __name__ == '__main__':
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
-    max_iter = 100
+    max_iter = 1000
     clone_rate = 10
     mutate_rate = 2.0
     max_res = 150
     # execute the algorithm
 
     data1 = AIRS_search(problem_size, max_iter, clone_rate, mutate_rate, max_res, search_space)
-    data2 = CSA_search(search_space, max_iter, max_iter)
+    data2 = CSA_search(search_space, 200, 200)
     data3 = DCA_search(search_space, max_iter)
 
     data1['x1'] = [5] + data1['x1']

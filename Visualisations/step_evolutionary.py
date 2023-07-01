@@ -137,6 +137,7 @@ def evaluate_population(population):
 def select_parents_gen(population, num_parents):
     parents = []
     sorted_population = sorted(population, key=lambda x: objective_function(x))
+    num_parents = min(num_parents, len(sorted_population))  # Nowy wiersz
     for i in range(num_parents):
         parents.append(sorted_population[i])
     return parents
@@ -203,6 +204,7 @@ def ploting(first, second, third):
 
     # Tworzenie wykresu 3D
     fig = plt.figure()
+    fig.suptitle('Algorytmy Ewolucyjne dla 1000 iteracji', fontsize=16)
     ax = fig.add_subplot(131, projection='3d')
     ax.plot_surface(X1, X2, F, cmap='viridis', alpha=0.5)
     ax.plot(first['x1'], first['x2'], first['f'], linewidth=2, color='blue')
@@ -240,16 +242,18 @@ def ploting(first, second, third):
     ax2.set_zlabel("f")
     ax2.view_init(90, -90)
     ax2.set_zticks([])
-
+    
     plt.subplots_adjust(wspace=0)
-    plt.show()
+    #plt.savefig('demo.png', dpi=300, transparent=False, bbox_inches = 'tight', pad_inches = 0.1)
 
+    plt.show()
+    
 if __name__ == '__main__':
 
     # problem configuration
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
-    max_gens = 100
+    max_gens = 1000
     pop_size = 10 * problem_size
     weightf = 0.8
     crossf = 0.9
@@ -260,7 +264,7 @@ if __name__ == '__main__':
 
     data1 = DEA_search(max_gens, search_space)
     data2 = ESA_search(max_gens, search_space)
-    data3 = genetic_algorithm(search_space, max_gens)
+    data3 = genetic_algorithm(search_space, max_gens, max_gens)
 
     data1['x1'] = [5] + data1['x1']
     data1['x2'] = [5] + data1['x2']

@@ -1,3 +1,4 @@
+#zaimplementowane na podstawie pracy Clever Algorithms Nature-Inspired Programming Recipes
 import random
 
 from Praca.csv_utils import write_to_csv, calculate_average

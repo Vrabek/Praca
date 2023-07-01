@@ -1,3 +1,4 @@
+#zaimplementowane na podstawie pracy Clever Algorithms Nature-Inspired Programming Recipes
 import math
 import random
 

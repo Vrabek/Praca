@@ -114,7 +114,7 @@ def bitclimber(child, search_space, p_mut, max_local_gens, bits_per_param):
             current = candidate
     return current
 
-def MA_search(max_gens, search_space, pop_size=100, p_cross=0.98, p_mut=1/36, max_local_gens=20, p_local=0.5, bits_per_param=16):
+def MA_search(max_gens, search_space, pop_size=100, p_cross=0.98, p_mut=1/36, max_local_gens=100, p_local=0.5, bits_per_param=16):
     data = {'x1': [], 'x2': [], 'f': []}
     pop = [{'bitstring': random_bitstring(len(search_space)*bits_per_param)} for _ in range(pop_size)]
     for candidate in pop:
@@ -189,6 +189,7 @@ def ploting(first, second, third):
 
     # Tworzenie wykresu 3D
     fig = plt.figure()
+    fig.suptitle('Algorytmy Fizyczne dla 1000 iteracji', fontsize=16)
     ax = fig.add_subplot(131, projection='3d')
     ax.plot_surface(X1, X2, F, cmap='viridis', alpha=0.5)
     ax.plot(first['x1'], first['x2'], first['f'], linewidth=2, color='blue')
@@ -239,7 +240,7 @@ if __name__ == "__main__":
     consid_rate = 0.95
     adjust_rate = 0.7
     range_value = 0.05
-    max_iter = 100
+    max_iter = 1000
     # execute the algorithm
 
 

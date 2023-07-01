@@ -1,3 +1,4 @@
+#zaimplementowane na podstawie pracy Clever Algorithms Nature-Inspired Programming Recipes
 import random
 import math
 
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     problem_size, search_space, optimal_solution = problem_configuration()
     # algorithm configuration
     max_iter = 100
-    max_temp = 100000.0
+    max_temp = 100000
     temp_change = 0.98
     # execute the algorithm
 

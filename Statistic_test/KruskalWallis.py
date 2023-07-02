@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import kruskal
 import scikit_posthocs as sp
+import numpy as np
 
 # Załaduj dane
 df = pd.read_csv('DATA.csv')
@@ -19,10 +20,14 @@ if p_val < 0.05:
     dunn_results = sp.posthoc_dunn(df, val_col='error', group_col='method')
     print(dunn_results)
 
-    # Stwórz mapę ciepła z mniejszą czcionką dla anotacji
-    plt.figure(figsize=(10, 8))
-    sns.heatmap(dunn_results, annot=True, cmap='coolwarm', annot_kws={"size": 10})  # zmniejsz rozmiar czcionki do 10
-    plt.title('Heatmap p-values from Dunn\'s Test')
+    # Zastąp wartości p-wartość mniejsze od 0.05 wartością NaN
+    dunn_results[dunn_results < 0.05] = np.nan
+
+    # Stwórz mapę ciepła z większym rozmiarem i mniejszą czcionką dla anotacji
+    plt.figure(figsize=(15, 10))  # Zwiększ rozmiar wykresu
+    sns.heatmap(dunn_results, annot=True, cmap='coolwarm', annot_kws={"size": 7})  # Zmniejsz rozmiar czcionki do 8
+    plt.title('Macierz p-wartości > 0.05 dla testu Dunna')
+    plt.tight_layout()
     plt.show()
 
     # Zapisz wyniki do pliku CSV

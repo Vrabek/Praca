@@ -14,8 +14,8 @@ def read_csv(filename, group_column, value_column):
                 data[row[group_index]].append(float(row[value_index]))
     return data
 
-filenames = ['AGGREGATED_DATA_PS_2.csv', 'AGGREGATED_DATA_PS_10.csv', 'AGGREGATED_DATA_PS_50.csv']
-legend_labels = ['2 zmienne decyzyjne', '10 zmiennych decyzyjnych', '50 zmiennych decyzyjnych']
+filenames = ['AGGREGATED_DATA_PS_2.csv', 'AGGREGATED_DATA_PS_4.csv', 'AGGREGATED_DATA_PS_6.csv', 'AGGREGATED_DATA_PS_8.csv', 'AGGREGATED_DATA_PS_10.csv']
+legend_labels = ['2 zmienne decyzyjne', '4 zmienne decyzyjne', '6 zmiennych decyzyjnych', '8 zmiennych decyzyjnych', '10 zmiennych decyzyjnych']
 
 data = [read_csv(filename, 'method', 'average_time_duration') for filename in filenames]
 
@@ -23,19 +23,18 @@ data = [read_csv(filename, 'method', 'average_time_duration') for filename in fi
 fig, ax = plt.subplots()
 
 
-width = 0.3
+width = 0.15
+all_bars = []
 labels = list(data[0].keys())
 for i, (filename, legend_label) in enumerate(zip(filenames, legend_labels)):
     means = [sum(data[i][label])/len(data[i][label]) for label in labels]
     bars = ax.bar([j + i*width for j in range(len(labels))], means, width=width, label=legend_label)
+    all_bars.append(bars)
 
-
-    if i == len(filenames) - 1:
-        for j, bar in enumerate(bars):
-            ax.text(bar.get_x() + bar.get_width() / 2, 0, labels[j], 
-                    ha='center', va='bottom', rotation='vertical')
-
-
+middle_bars = all_bars[len(filenames) // 2]
+for j, bar in enumerate(middle_bars):
+    ax.text(bar.get_x() + bar.get_width() / 2, 0, labels[j], 
+            ha='center', va='bottom', rotation='vertical')
 ax.set_xticks([j + width*(len(filenames)-1)/2 for j in range(len(labels))])
 ax.set_xticklabels([''] * len(labels))
 
